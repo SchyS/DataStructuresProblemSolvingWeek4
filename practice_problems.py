@@ -12,10 +12,33 @@ Input: [1, 2, 3, 4, 5]
 Output: False
 """
 
-def has_duplicates(product_ids):
-    # Your implementation here
-    pass
 
+def has_duplicates(product_ids):
+
+    seen = set()
+
+    for i in product_ids:
+        if i in seen:
+            return True
+        seen.add(i)
+    return False
+
+"""
+(1) Why this data structure fits the task  
+This data structure fits the task because it only stores unique values is faster to check through.
+
+
+(2) what operations are performed and their expected runtime
+For each loop, adding an element and checking elements in the set are 
+performed when looking through the set and its runtime is O(n) for these tasks.
+"""
+
+
+example_input = [1, 2, 3]
+print(has_duplicates(example_input))
+
+example2_input = [1, 2, 3, 2, 3]
+print(has_duplicates(example2_input))
 
 """
 Problem 2: Order Manager
@@ -32,14 +55,33 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
-        # Your initialization here
-        pass
+        self.tasks = []
 
     def add_task(self, task):
-        pass
+        self.tasks.append(task)
+        print(f"Added {task}")
 
     def remove_oldest_task(self):
-        pass
+        if self.tasks:
+            taskdel = self.tasks.pop(0)
+            print(f"Removed {taskdel}")
+        else:
+            print("List is Empty")
+            return
+
+task_queue = TaskQueue()
+task_queue.add_task("Email follow-up")
+task_queue.add_task("Code review")
+task_queue.remove_oldest_task() # "Email follow-up"
+
+"""
+(1) Why this data structure fits the task  
+A list fits this task because you can have duplicates and maintains the order.
+
+(2) what operations are performed and their expected runtime
+Adding a value using append, the runtime is O(1) 
+and removing a value using pop, the runtime is O(n)
+"""
 
 
 """
@@ -56,11 +98,28 @@ tracker.get_unique_count() → 2
 """
 
 class UniqueTracker:
-    def __init__(self):
-        pass
 
+    def __init__(self):
+        self.my_set = set()
+        
     def add(self, value):
-        pass
+        self.my_set.add(value)
+
 
     def get_unique_count(self):
-        pass
+        print(len(self.my_set))
+
+tracker = UniqueTracker()
+tracker.add(10)
+tracker.add(20)
+tracker.add(10)
+tracker.get_unique_count() #2
+
+"""
+(1) Why this data structure fits the task  
+Using a set works because we are only looking at unique values. 
+
+(2) what operations are performed and their expected runtime
+Adding values using add and printing the number of unique values. 
+Both run in O(1) time. 
+"""

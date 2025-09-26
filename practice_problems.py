@@ -1,3 +1,5 @@
+from collections import deque
+
 """
 Problem 1: Duplicate Tracker
 
@@ -55,7 +57,7 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
-        self.tasks = []
+        self.tasks = deque()
 
     def add_task(self, task):
         self.tasks.append(task)
@@ -63,10 +65,10 @@ class TaskQueue:
 
     def remove_oldest_task(self):
         if self.tasks:
-            return self.tasks.pop(0)
+            return self.tasks.popleft()
         else:
             print("List is Empty")
-            return
+            return None
 
 #Example Usage
 task_queue = TaskQueue()
@@ -76,11 +78,12 @@ print("Removed:", task_queue.remove_oldest_task()) # "Email follow-up"
 
 """
 (1) Why this data structure fits the task  
-A list fits this task because you can have duplicates and maintains the order.
+A queue fits this task because we are mostly working with the front.
 
 (2) what operations are performed and their expected runtime
 Adding a value using append, the runtime is O(1) 
-and removing a value using pop, the runtime is O(n)
+and removing a value using popleft, the runtime is O(1).
+Meaning overall, it would be O(n).
 """
 
 

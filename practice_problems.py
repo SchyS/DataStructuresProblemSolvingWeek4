@@ -23,6 +23,13 @@ def has_duplicates(product_ids):
         seen.add(i)
     return False
 
+#Example Usage
+example_input = [1, 2, 3]
+print(has_duplicates(example_input))
+
+example2_input = [1, 2, 3, 2, 3]
+print(has_duplicates(example2_input))
+
 """
 (1) Why this data structure fits the task  
 This data structure fits the task because it only stores unique values is faster to check through.
@@ -32,13 +39,6 @@ This data structure fits the task because it only stores unique values is faster
 For each loop, adding an element and checking elements in the set are 
 performed when looking through the set and its runtime is O(n) for these tasks.
 """
-
-
-example_input = [1, 2, 3]
-print(has_duplicates(example_input))
-
-example2_input = [1, 2, 3, 2, 3]
-print(has_duplicates(example2_input))
 
 """
 Problem 2: Order Manager
@@ -63,16 +63,16 @@ class TaskQueue:
 
     def remove_oldest_task(self):
         if self.tasks:
-            taskdel = self.tasks.pop(0)
-            print(f"Removed {taskdel}")
+            return self.tasks.pop(0)
         else:
             print("List is Empty")
             return
 
+#Example Usage
 task_queue = TaskQueue()
 task_queue.add_task("Email follow-up")
 task_queue.add_task("Code review")
-task_queue.remove_oldest_task() # "Email follow-up"
+print("Removed:", task_queue.remove_oldest_task()) # "Email follow-up"
 
 """
 (1) Why this data structure fits the task  
@@ -107,13 +107,14 @@ class UniqueTracker:
 
 
     def get_unique_count(self):
-        print(len(self.my_set))
+        return len(self.my_set)
 
+#Example Usage
 tracker = UniqueTracker()
 tracker.add(10)
 tracker.add(20)
 tracker.add(10)
-tracker.get_unique_count() #2
+print(tracker.get_unique_count()) #2
 
 """
 (1) Why this data structure fits the task  
